@@ -9,3 +9,7 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <App/>
   </Provider>
 )
+
+// curl -X POST "https://accounts.spotify.com/api/token" \
+//   -H "Content-Type: application/x-www-form-urlencoded" \
+//   -d "grant_type=client_credentials&client_id=fef1daa5363a476c8a53e5094ccbd8e6&client_secret=701c68b3b3034fd2aa005714271d5405"
