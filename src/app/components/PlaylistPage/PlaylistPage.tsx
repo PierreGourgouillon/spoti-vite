@@ -16,9 +16,6 @@ const tracks = [
 ];
 
 const PlaylistPage = () => {
-  const onAddPlaylist = () => {
-    console.log('Ajouter une nouvelle playlist');
-  };
 
   return (
     <div className="flex">
