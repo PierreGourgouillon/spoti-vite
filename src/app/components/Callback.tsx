@@ -20,7 +20,7 @@ export default function Callback() {
                     setToken(response.token)
                     setRefreshToken(response.refreshToken)
                     localStorage.setItem('userToken', JSON.stringify(response))
-                    navigate("/home")
+                    navigate("/")
                 })
         }
     }, [location]);
