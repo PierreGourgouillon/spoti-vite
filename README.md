@@ -96,6 +96,50 @@ export default function CellPlaylistSidebar(index: number, title: string, imgSrc
 }
 ```
 
+## Context
+Le **`Context`** est un mécanisme de React qui permet de partager des données entre les composants sans avoir à les transmettre explicitement via les props à travers tous les niveaux de l'arborescence des composants. Il facilite la gestion de l'état global de l'application et permet d'accéder à ces données de manière efficace.
+
+Dans notre projet, par exemple, nous utilisons le contexte pour partager les informations relatives au token d'authentification et au refreshToken avec les composants enfants. Cela nous évite de devoir transmettre ces données via les props à chaque composant qui en aurait besoin.
+
+Voici un exemple d'utilisation du contexte dans notre code :
+
+```tsx
+import { useContext, useEffect, useState } from "react";
+import TokenContext from "../context.tsx";
+import PlaylistRepository from "../repositories/PlaylistRepository.ts";
+import PlaylistService from "../services/PlaylistService.ts";
+import { PlaylistModel } from "../models/PlaylistModel.ts";
+
+export default function HomePage() {
+  const { token, refreshToken } = useContext(TokenContext);
+  const playlistRepository: PlaylistRepository = new PlaylistRepository(new PlaylistService());
+  const [playlistState, setPlaylists] = useState<PlaylistModel[]>([]);
+
+  useEffect(() => {
+    playlistRepository.getPlaylists(token)
+      .then((playlists) => {
+        setPlaylists(playlists);
+      });
+  }, []);
+
+  return (
+    <div>
+      <div>Token: {token}</div>
+      <div>Refresh Token: {refreshToken}</div>
+      {playlistState.map((item, index) => (
+        <div key={index}>{item.name}</div>
+      ))}
+    </div>
+  );
+}
+```
+
+Dans cet exemple, nous utilisons **`useContext(TokenContext)`** pour accéder aux valeurs **`token`** et **`refreshToken`** stockées dans le contexte. Cela nous permet d'accéder facilement à ces valeurs dans notre composant **`HomePage`** sans avoir à les transmettre via les props.
+
+De plus, nous utilisons également un état local **(`useState`)** pour stocker et mettre à jour la liste des playlists. Nous utilisons l'effet **(`useEffect`)** pour appeler la méthode **`playlistRepository.getPlaylists(token)`** et mettre à jour l'état local avec les playlists obtenues.
+
+Le contexte joue un rôle crucial dans notre projet en fournissant les valeurs du token d'authentification et du refreshToken à nos composants enfants via le contexte **`TokenContext`**. Cela nous permet d'accéder à ces valeurs sans avoir à les passer explicitement en tant que props, simplifiant ainsi la gestion de l'état global de l'application.
+
 ## Comment exécuter le projet localement
 
 1. Clonez ce dépôt sur votre machine locale en utilisant la commande suivante :
@@ -114,4 +158,4 @@ npm install
  ```shell
 npm run dev
 ```
-Cela démarrera l'application et vous pourrez y accéder depuis votre navigateur à l'adresse http://localhost:5173.
+Cela démarrera l'application et vous pourrez y accéder depuis votre navigateur à l'adresse **`http://localhost:5173`**.
