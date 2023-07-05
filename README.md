@@ -32,17 +32,19 @@ Les principales dépendances utilisées dans ce projet sont :
 
    ```shell
    git clone https://github.com/PierreGourgouillon/spoti-vite.git
-Accédez au répertoire du projet :
-
+   ```
+2. Accédez au répertoire du projet :
  ```shell
 cd spoti-vite
-Installez les dépendances en utilisant npm :
+```
+3. Installez les dépendances en utilisant npm :
 
  ```shell
 npm install
-Lancez l'application en mode développement :
+```
+4. Lancez l'application en mode développement :
 
  ```shell
 npm run dev
-
+```
 Cela démarrera l'application et vous pourrez y accéder depuis votre navigateur à l'adresse http://localhost:5173.
