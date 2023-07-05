@@ -18,6 +18,9 @@ SpotiVite est construit en utilisant les technologies suivantes :
 
 - **TypeScript** : un langage de programmation qui ajoute des fonctionnalités de typage statique à JavaScript. Nous avons utilisé TypeScript pour améliorer la robustesse et la maintenabilité de notre code en détectant les erreurs de type à la compilation.
 
+-    **Tailwind CSS** : un framework CSS utilitaire qui facilite la création d'interfaces utilisateur réactives et esthétiques. Nous avons utilisé Tailwind CSS pour styliser notre application et appliquer des classes CSS de manière efficace.
+
+
 ## Dépendances
 
 Les principales dépendances utilisées dans ce projet sont :
