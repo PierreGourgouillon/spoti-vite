@@ -29,7 +29,7 @@ Les principales dépendances utilisées dans ce projet sont :
 ## Comment exécuter le projet localement
 
 1. Clonez ce dépôt sur votre machine locale en utilisant la commande suivante :
-   ```shell
+```shell
    git clone https://github.com/PierreGourgouillon/spoti-vite.git
    ```
 2. Accédez au répertoire du projet :
