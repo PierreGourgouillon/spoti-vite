@@ -28,6 +28,8 @@ Les principales dépendances utilisées dans ce projet sont :
 - **react-router-dom** : une bibliothèque de routage pour React. Nous avons utilisé cette dépendance pour gérer la navigation entre les différentes pages de l'application.
 
 - **axios** : une bibliothèque JavaScript pour effectuer des requêtes HTTP. Nous avons utilisé axios pour communiquer avec l'API Spotify afin de récupérer les données des playlists.
+  
+- **tailwindcss** : un framework CSS utilitaire. Nous avons utilisé Tailwind CSS pour styliser notre application et appliquer des classes CSS de manière efficace.
 
 ## Comment exécuter le projet localement
 
