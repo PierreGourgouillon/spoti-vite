@@ -1,35 +1,18 @@
-import React from 'react';
 import CellPlaylistSidebar from './CellPlaylistSidebar';
 import ProfileComponent from './ProfileComponent';
+import {PlaylistModel} from "../../models/PlaylistModel.ts";
+import {useContext} from "react";
+import PlaylistsContext from "../../PlaylistsContext.ts";
 
-interface Playlist {
-  id: string;
-  name: string;
-}
+const User = { username: 'user1', src: './src/assets/profil.jpg' };
 
-interface PlaylistSidebarProps {
-  playlists: Playlist[];
-  onAddPlaylist: () => void;
-}
-const User ={ username: 'user1', src: './src/assets/profil.jpg' };
+const PlaylistSidebar = ({ playlists }: { playlists: PlaylistModel[] }) => {
 
-const List = [
-  { title: 'Playlist Title1', src: 'Playlist Image1' },
-  { title: 'Playlist Title2', src: 'Playlist Image2' },
-  { title: 'Playlist Title4', src: 'Playlist Image4' },
-];
-let Menus = List.map((item) => {
-  return {
-    title: item.title,
-    src: item.src
-  };
-});
+  const { setCurrentPlaylist } = useContext(PlaylistsContext)
 
-const PlaylistSidebar = () => {
- 
   return (
     <div className='flex'>
-      <div className='w-72 h-screen bg-zinc-800 rounded-r-lg'>
+      <div className='w-72 h-full bg-zinc-800 rounded-r-lg'>
         <div className='flex gap-x-4 mx-4 mt-4 items-center pb-4'>
           <img
             src="./src/assets/spotify.png" alt=""
@@ -42,8 +25,10 @@ const PlaylistSidebar = () => {
           <h2 className='
             text-zinc-500 text-lg font-semibold px-2 pt-1'>Bibliothèque</h2>
           <ul>
-            {Menus.map((menu, index) => (
-              CellPlaylistSidebar(index, menu.title, menu.src)
+            {playlists.map((playlist, index) => (
+              CellPlaylistSidebar(index, playlist.name, playlist.images[0].url, () => {
+                setCurrentPlaylist(playlists[index])
+              })
             ))}
           </ul>
         </div>
