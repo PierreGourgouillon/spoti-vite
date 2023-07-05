@@ -29,21 +29,18 @@ Les principales dépendances utilisées dans ce projet sont :
 ## Comment exécuter le projet localement
 
 1. Clonez ce dépôt sur votre machine locale en utilisant la commande suivante :
-
    ```shell
    git clone https://github.com/PierreGourgouillon/spoti-vite.git
    ```
 2. Accédez au répertoire du projet :
- ```shell
+```shell
 cd spoti-vite
 ```
 3. Installez les dépendances en utilisant npm :
-
- ```shell
+```shell
 npm install
 ```
 4. Lancez l'application en mode développement :
-
  ```shell
 npm run dev
 ```
