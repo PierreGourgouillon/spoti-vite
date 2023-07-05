@@ -159,3 +159,7 @@ npm install
 npm run dev
 ```
 Cela démarrera l'application et vous pourrez y accéder depuis votre navigateur à l'adresse **`http://localhost:5173`**.
+
+## -
+
+N'hésitez pas à explorer le code source pour comprendre comment chaque fonctionnalité est implémentée. Si vous avez des questions, n'hésitez pas à nous contacter.
