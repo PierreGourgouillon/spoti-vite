@@ -1,16 +1,16 @@
 # Spoti-Vite
 
-SpotiVite est une application qui vous permet de découvrir et d'explorer des playlists Spotify. Vous pouvez parcourir différentes playlists, afficher les détails d'une playlist sélectionnée et écouter des extraits des morceaux.
+SpotiVite est une application qui vous permet d'explorer vos playlists Spotify. Vous pouvez parcourir parmis vos différentes playlists, afficher les détails d'une playlist sélectionnée et écouter les morceaux qu'elle possède.
 
 ## Fonctionnalités
 
-- Parcourir les playlists disponibles
+- Parcourir vos playlists
 - Afficher les détails d'une playlist sélectionnée
-- Écouter des extraits des morceaux de la playlist
+- Écouter les morceaux de la playlist
 
 ## Technologies utilisées
 
-SpotiVite est construit en utilisant les technologies suivantes :
+Spoti-Vite est construit en utilisant les technologies suivantes :
 
 - **React** : une bibliothèque JavaScript pour construire des interfaces utilisateur dynamiques et réactives. Nous avons utilisé React pour créer les différents composants de l'application et gérer l'état de l'interface utilisateur.
 
@@ -18,7 +18,7 @@ SpotiVite est construit en utilisant les technologies suivantes :
 
 - **TypeScript** : un langage de programmation qui ajoute des fonctionnalités de typage statique à JavaScript. Nous avons utilisé TypeScript pour améliorer la robustesse et la maintenabilité de notre code en détectant les erreurs de type à la compilation.
 
-- **Tailwind CSS** : un framework CSS utilitaire qui facilite la création d'interfaces utilisateur réactives et esthétiques. Nous avons utilisé Tailwind CSS pour styliser notre application et appliquer des classes CSS de manière efficace.
+- **Tailwind CSS** : un framework CSS open-source qui facilite la création d'interfaces utilisateur réactives et esthétiques. Nous avons utilisé Tailwind CSS pour styliser notre application et appliquer des classes CSS de manière efficace, ce qui permet un gain de temps considérable.
 
 
 ## Dépendances
@@ -29,7 +29,7 @@ Les principales dépendances utilisées dans ce projet sont :
 
 - **axios** : une bibliothèque JavaScript pour effectuer des requêtes HTTP. Nous avons utilisé axios pour communiquer avec l'API Spotify afin de récupérer les données des playlists.
   
-- **tailwindcss** : un framework CSS utilitaire. Nous avons utilisé Tailwind CSS pour styliser notre application et appliquer des classes CSS de manière efficace.
+- **tailwindcss** : un framework CSS. Nous avons utilisé Tailwind CSS pour styliser notre application et appliquer des classes CSS de manière efficace et rapide.
 
 ### React Router DOM
 
@@ -60,35 +60,26 @@ function App() {
 ```
 
 ### Axios
-Axios est une bibliothèque JavaScript qui facilite l'envoi de requêtes HTTP depuis un navigateur ou un serveur Node.js. Dans notre projet, nous l'avons utilisée pour effectuer des requêtes vers l'API Spotify. Nous pouvons ainsi récupérer les données des playlists et les afficher dans notre application.
+Axios est une bibliothèque JavaScript qui facilite l'envoi de requêtes HTTP depuis un navigateur ou un serveur Node.js. Dans notre projet, nous l'avons utilisée pour effectuer des requêtes vers l'API Spotify. Nous avons pu ainsi récupérer les données des playlists et les afficher dans notre application.
 
 Voici un exemple d'utilisation d'Axios pour effectuer une requête GET vers l'API Spotify et récupérer les playlists :
 
 ```tsx
-import axios from 'axios';
+import axios from "axios";
 
-function fetchPlaylists() {
-  return axios.get('https://api.spotify.com/v1/playlists');
-}
-
-function PlaylistList() {
-  useEffect(() => {
-    fetchPlaylists()
-      .then((response) => {
-        const playlists = response.data.items;
-        // Effectuer des traitements sur les playlists récupérées
-      })
-      .catch((error) => {
-        // Gérer les erreurs
-      });
-  }, []);
-
-  // ...
+export default class PlaylistService {
+    getPlaylists = async function (token: string) {
+        return await axios.get("https://api.spotify.com/v1/me/playlists", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+    }
 }
 ```
 
 ### Tailwind CSS
-Tailwind CSS est un framework CSS utilitaire qui facilite la création d'interfaces utilisateur réactives et esthétiques. Nous l'avons utilisé pour styliser notre application en appliquant des classes CSS de manière efficace.
+Tailwind CSS est un framework CSS qui facilite la création d'interfaces utilisateur réactives et esthétiques. Nous l'avons utilisé pour styliser notre application en appliquant des classes CSS de manière efficace et rapide.
 
 Voici un exemple d'utilisation de Tailwind CSS pour styliser un composant de notre application :
 
