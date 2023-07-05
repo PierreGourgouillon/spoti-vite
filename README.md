@@ -1,4 +1,4 @@
-# SpotiVite
+# Spoti-Vite
 
 SpotiVite est une application qui vous permet de découvrir et d'explorer des playlists Spotify. Vous pouvez parcourir différentes playlists, afficher les détails d'une playlist sélectionnée et écouter des extraits des morceaux.
 
@@ -18,7 +18,7 @@ SpotiVite est construit en utilisant les technologies suivantes :
 
 - **TypeScript** : un langage de programmation qui ajoute des fonctionnalités de typage statique à JavaScript. Nous avons utilisé TypeScript pour améliorer la robustesse et la maintenabilité de notre code en détectant les erreurs de type à la compilation.
 
--    **Tailwind CSS** : un framework CSS utilitaire qui facilite la création d'interfaces utilisateur réactives et esthétiques. Nous avons utilisé Tailwind CSS pour styliser notre application et appliquer des classes CSS de manière efficace.
+- **Tailwind CSS** : un framework CSS utilitaire qui facilite la création d'interfaces utilisateur réactives et esthétiques. Nous avons utilisé Tailwind CSS pour styliser notre application et appliquer des classes CSS de manière efficace.
 
 
 ## Dépendances
@@ -30,6 +30,80 @@ Les principales dépendances utilisées dans ce projet sont :
 - **axios** : une bibliothèque JavaScript pour effectuer des requêtes HTTP. Nous avons utilisé axios pour communiquer avec l'API Spotify afin de récupérer les données des playlists.
   
 - **tailwindcss** : un framework CSS utilitaire. Nous avons utilisé Tailwind CSS pour styliser notre application et appliquer des classes CSS de manière efficace.
+
+### React Router DOM
+
+React Router DOM est une dépendance qui facilite la gestion de la navigation dans une application React. Nous l'avons utilisée pour créer des routes pour chaque page de l'application, ce qui nous permet de naviguer entre les différentes vues, comme la liste des playlists et les détails d'une playlist sélectionnée.
+
+Voici un exemple d'utilisation de React Router DOM dans notre code :
+
+```tsx
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+
+function App() {
+//...
+  return (
+        <BrowserRouter>
+            <TokenContext.Provider value={{ token, refreshToken, setToken: setToken, setRefreshToken }}>
+                <Routes>
+                    <Route element={<PrivateRoute/>}>
+                        <Route element={<HomePage/>} path="/"/>
+                    </Route>
+                    <Route element={<AuthenticationPage/>} path="/login"/>
+                    <Route element={<Callback/>} path="/callback">
+                    </Route>
+                </Routes>
+            </TokenContext.Provider>
+        </BrowserRouter>
+  )
+}
+```
+
+### Axios
+Axios est une bibliothèque JavaScript qui facilite l'envoi de requêtes HTTP depuis un navigateur ou un serveur Node.js. Dans notre projet, nous l'avons utilisée pour effectuer des requêtes vers l'API Spotify. Nous pouvons ainsi récupérer les données des playlists et les afficher dans notre application.
+
+Voici un exemple d'utilisation d'Axios pour effectuer une requête GET vers l'API Spotify et récupérer les playlists :
+
+```tsx
+import axios from 'axios';
+
+function fetchPlaylists() {
+  return axios.get('https://api.spotify.com/v1/playlists');
+}
+
+function PlaylistList() {
+  useEffect(() => {
+    fetchPlaylists()
+      .then((response) => {
+        const playlists = response.data.items;
+        // Effectuer des traitements sur les playlists récupérées
+      })
+      .catch((error) => {
+        // Gérer les erreurs
+      });
+  }, []);
+
+  // ...
+}
+```
+
+### Tailwind CSS
+Tailwind CSS est un framework CSS utilitaire qui facilite la création d'interfaces utilisateur réactives et esthétiques. Nous l'avons utilisé pour styliser notre application en appliquant des classes CSS de manière efficace.
+
+Voici un exemple d'utilisation de Tailwind CSS pour styliser un composant de notre application :
+
+```tsx
+export default function CellPlaylistSidebar(index: number, title: string, imgSrc: string) {
+    return (
+        <li key={index} className='
+            text-zinc-300 text-sm flex-col py-2 px-4 
+            cursor-pointer hover:bg-zinc-600 rounded-md mt-2'>
+                <img src={`${imgSrc}`} alt="" />
+                <span>{title}</span>
+      </li>
+    )
+}
+```
 
 ## Comment exécuter le projet localement
 
