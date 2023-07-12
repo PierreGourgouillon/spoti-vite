@@ -1,4 +1,5 @@
 import {createContext} from "react";
+
 interface TokenModel {
     token: string,
     refreshToken: string
@@ -13,4 +14,4 @@ const TokenContext = createContext<TokenModel>({
     setRefreshToken: () => {}
 });
 
-export default TokenContext;
+export default TokenContext

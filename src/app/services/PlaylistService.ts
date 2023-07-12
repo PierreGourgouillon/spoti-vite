@@ -8,4 +8,21 @@ export default class PlaylistService {
             }
         })
     }
+
+    getSongs = async function (token: string, href: string) {
+        return await axios.get(href, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+    }
+
+    getMe = async function (token: string) {
+        const response = await axios.get("https://api.spotify.com/v1/me", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        return response
+    }
 }

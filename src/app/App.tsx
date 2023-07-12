@@ -1,10 +1,10 @@
 import {useState} from "react";
-import TokenContext from "./context.tsx";
 import AuthenticationPage from "./components/AuthenticationPage.tsx";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Callback from "./components/Callback.tsx";
 import HomePage from "./components/HomePage.tsx";
 import PrivateRoute from "./components/PrivateRoute.tsx";
+import TokenContext from "./context.tsx";
 
 function App() {
     const [token, setToken] = useState((): string => {
@@ -21,6 +21,7 @@ function App() {
     // @ts-ignore
     return (
         <BrowserRouter>
+            <script src="https://sdk.scdn.co/spotify-player.js"></script>
             <TokenContext.Provider value={{ token, refreshToken, setToken: setToken, setRefreshToken }}>
                 <Routes>
                     <Route element={<PrivateRoute/>}>
