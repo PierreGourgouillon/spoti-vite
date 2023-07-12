@@ -81,7 +81,7 @@ export default class PlaylistService {
 ### Tailwind CSS
 Tailwind CSS est un framework CSS qui facilite la création d'interfaces utilisateur réactives et esthétiques. Nous l'avons utilisé pour styliser notre application en appliquant des classes CSS de manière efficace et rapide.
 
-Voici un exemple d'utilisation de Tailwind CSS pour styliser un composant de notre application :
+Voici un exemple d'utilisation de Tailwind CSS pour styliser un composant de notre application que nous utilisons pour afficher nos playlists :
 
 ```tsx
 export default function CellPlaylistSidebar(index: number, title: string, imgSrc: string) {
