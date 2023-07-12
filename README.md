@@ -96,6 +96,52 @@ export default function CellPlaylistSidebar(index: number, title: string, imgSrc
 }
 ```
 
+Voici un exemple de comment nous utilisons ce composant dans notre sidebar afin d'afficher nos playlists:
+
+```tsx
+import CellPlaylistSidebar from './CellPlaylistSidebar';
+import ProfileComponent from './ProfileComponent';
+import {PlaylistModel} from "../../models/PlaylistModel.ts";
+import {useContext, useEffect, useState} from "react";
+import PlaylistsContext from "../../PlaylistsContext.ts";
+import PlaylistRepository from "../../repositories/PlaylistRepository.ts";
+import PlaylistService from "../../services/PlaylistService.ts";
+import TokenContext from "../../context.tsx";
+
+const PlaylistSidebar = ({ playlists }: { playlists: PlaylistModel[] }) => {
+
+  //...
+
+  return (
+    <div className='flex'>
+      <div className='w-72 h-full bg-zinc-800 rounded-r-lg'>
+        <div className='flex gap-x-4 mx-4 mt-4 items-center pb-4'>
+          <img
+            src="./src/assets/spotify.png" alt=""
+            className='cursor-pointer duration-500 w-10' />
+          <h1 className='text-white origin-left font-medium text-2xl '>Spoti-Vite</h1>
+        </div>
+        {ProfileComponent(currentUser?.display_name ?? "", currentUser?.images[0].url ?? "")}
+        <div className='border-b-2 border-zinc-700 mb-4 mx-4'></div>
+        <div className='rounded-lg bg-zinc-700 bg-opacity-40 pb-2'>
+          <h2 className='
+            text-zinc-500 text-lg font-semibold px-2 pt-1'>Bibliothèque</h2>
+          <ul>
+            {playlists.map((playlist, index) => (
+              CellPlaylistSidebar(index, playlist.name, playlist.images[0].url, () => {  //Nous appellons notre composant ici
+                setCurrentPlaylist(playlists[index])
+              })
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PlaylistSidebar;
+```
+
 ## Context
 Le **`Context`** est un mécanisme de React qui permet de partager des données entre les composants sans avoir à les transmettre explicitement via les props à travers tous les niveaux de l'arborescence des composants. Il facilite la gestion de l'état global de l'application et permet d'accéder à ces données de manière efficace.
 
@@ -136,6 +182,27 @@ export default function HomePage() {
 
 Dans cet exemple, nous utilisons **`useContext(TokenContext)`** pour accéder aux valeurs **`token`** et **`refreshToken`** stockées dans le contexte. Cela nous permet d'accéder facilement à ces valeurs dans notre composant **`HomePage`** sans avoir à les transmettre via les props.
 
+Voici notre modèle **`TokenContext`**:
+
+```tsx
+import {createContext} from "react";
+interface TokenModel {
+    token: string,
+    refreshToken: string
+    setToken: (token: string) => void
+    setRefreshToken: (refreshToken: string) => void
+}
+
+const TokenContext = createContext<TokenModel>({
+    token: "",
+    refreshToken: "",
+    setToken: () => {},
+    setRefreshToken: () => {}
+});
+
+export default TokenContext;
+```
+
 De plus, nous utilisons également un état local **(`useState`)** pour stocker et mettre à jour la liste des playlists. Nous utilisons l'effet **(`useEffect`)** pour appeler la méthode **`playlistRepository.getPlaylists(token)`** et mettre à jour l'état local avec les playlists obtenues.
 
 Le contexte joue un rôle crucial dans notre projet en fournissant les valeurs du token d'authentification et du refreshToken à nos composants enfants via le contexte **`TokenContext`**. Cela nous permet d'accéder à ces valeurs sans avoir à les passer explicitement en tant que props, simplifiant ainsi la gestion de l'état global de l'application.
@@ -144,7 +211,7 @@ Le contexte joue un rôle crucial dans notre projet en fournissant les valeurs d
 
 1. Clonez ce dépôt sur votre machine locale en utilisant la commande suivante :
 ```shell
-   git clone https://github.com/PierreGourgouillon/spoti-vite.git
+git clone https://github.com/PierreGourgouillon/spoti-vite.git
    ```
 2. Accédez au répertoire du projet :
 ```shell
