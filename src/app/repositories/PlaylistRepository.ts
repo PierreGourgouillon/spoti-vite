@@ -22,8 +22,6 @@ export default class PlaylistRepository {
 
     getMe = async (token: string): Promise<SpotifyUser> => {
         const response = await this.playlistService.getMe(token)
-        console.log("ntm")
-        console.log(response.data as SpotifyUser)
         return response.data as SpotifyUser
     }
 }

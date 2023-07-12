@@ -9,7 +9,7 @@ import TokenContext from "../../context.tsx";
 
 const PlaylistSidebar = ({ playlists }: { playlists: PlaylistModel[] }) => {
 
-  const { token } = useContext(TokenContext)
+  const { token, setToken } = useContext(TokenContext)
   const repository = new PlaylistRepository(new PlaylistService())
   const { setCurrentPlaylist } = useContext(PlaylistsContext)
   const [currentUser, setCurrentUser] = useState<SpotifyUser | undefined>()
@@ -44,6 +44,14 @@ const PlaylistSidebar = ({ playlists }: { playlists: PlaylistModel[] }) => {
               })
             ))}
           </ul>
+        </div>
+        <div className="fixed bottom-10 left-10">
+          <div className="py-4 px-8 rounded-lg bg-green-600 text-white font-semibold text-lg cursor-pointer" onClick={() => {
+            localStorage.removeItem("userToken")
+            setToken("")
+          }}>
+            <p>Déconnexion</p>
+          </div>
         </div>
       </div>
     </div>

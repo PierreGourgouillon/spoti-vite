@@ -25,7 +25,7 @@ function App() {
             <TokenContext.Provider value={{ token, refreshToken, setToken: setToken, setRefreshToken }}>
                 <Routes>
                     <Route element={<PrivateRoute/>}>
-                        <Route element={<HomePage/>} path="/"/>
+                        <Route element={<HomePage/>} path="/home"/>
                     </Route>
                     <Route element={<AuthenticationPage/>} path="/login"/>
                     <Route element={<Callback/>} path="/callback">
