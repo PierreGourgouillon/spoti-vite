@@ -6,6 +6,7 @@ import PlaylistSidebar from "./PlaylistPage/PlaylistSidebar.tsx";
 import PlaylistDetails from "./PlaylistPage/PlaylistDetails.tsx";
 import PlaylistsContext from "../PlaylistsContext.ts";
 import TokenContext from "../context.tsx";
+import WelcomePage from "./WelcomePage.tsx";
 import PlaylistTracks from "./PlaylistPage/PlaylistTracks.tsx";
 
 export default function HomePage() {
@@ -29,27 +30,13 @@ export default function HomePage() {
 
     return(
         <PlaylistsContext.Provider value={{ playlists: playlists, setPlaylists: setPlaylists, currentPlaylist: currentPlaylist, setCurrentPlaylist: setCurrentPlaylist }}>
-            <div className="flex">
+            <div className="flex min-h-screen">
                 <PlaylistSidebar playlists={playlists}/>
                 <div className="bg-zinc-700 flex-grow">
-                    <PlaylistDetails
-                        title="Playlist 1"
-                        image="playlist-image-url"
-                        trackCount={0}
-                    />
-                    <PlaylistTracks/>
+                    { currentPlaylist == undefined ? <WelcomePage /> : <PlaylistDetails title="Playlist 1" image="playlist-image-url" trackCount={0}/>  }
+                    { currentPlaylist == undefined ? <div></div> : <PlaylistTracks/> }
                 </div>
             </div>
         </PlaylistsContext.Provider>
     )
 }
-
-/*
-        <div>
-            <div>token: {token}</div>
-            <div>refresh: {refreshToken}</div>
-            {playlistState.map((item, index) => (
-                <div key={index}>{item.name}</div>
-            ))}
-        </div>
- */

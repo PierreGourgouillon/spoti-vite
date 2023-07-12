@@ -16,4 +16,13 @@ export default class PlaylistService {
             }
         })
     }
+
+    getMe = async function (token: string) {
+        const response = await axios.get("https://api.spotify.com/v1/me", {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+        return response
+    }
 }

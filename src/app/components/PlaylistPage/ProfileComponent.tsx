@@ -1,4 +1,4 @@
-export default function ProfileComponent(username: string, imgSrc: string) {
+export default function ProfileComponent(username: string, imgSrc: string | undefined) {
     return (
         <div className='mb-4'>
           <h2 className='text-zinc-500 text-lg font-semibold px-2 pt-1'>Profil</h2>

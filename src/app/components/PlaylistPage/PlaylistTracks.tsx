@@ -10,23 +10,24 @@ const PlaylistTracks = () => {
     const { currentPlaylist } = useContext(PlaylistsContext)
     const repository = new PlaylistRepository(new PlaylistService())
     const [tracks, setTracks] = useState<SpotifyCurrentTracks[]>()
-    const [isLoading, setLoading] = useState<boolean>(true)
+    const [isLoading, setLoading] = useState<boolean>(false)
     const [currentTrack, setCurrentTrack] = useState<SpotifyCurrentTracks | undefined>()
 
     useEffect(() => {
-        if (isLoading) {
-            if (currentPlaylist != null) {
-                repository.getSongs(token, currentPlaylist.tracks.href)
-                    .then((response) => {
-                        setTracks(response)
-                        setLoading(false)
-                    })
-            }
+        if (currentPlaylist != null) {
+            setLoading(true)
+            repository.getSongs(token, currentPlaylist.tracks.href)
+                .then((response) => {
+                    setTracks(response)
+                    setLoading(false)
+                })
+            setLoading(false)
         }
-    })
+    }, [currentPlaylist])
+
   return (
     <div className="bg-zinc-700 p-4">
-      <ul>
+      <ul className="overflow-y-scroll pb-20">
           {tracks?.map((track, index) => (
               <li key={index} className="flex py-1 cursor-pointer hover:bg-zinc-600" onClick={() => {
                   setCurrentTrack(track)
